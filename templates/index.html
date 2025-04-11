@@ -4,12 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plant Disease Detection</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ5bK5iuK9H1H9O8lGMlGpXqFfBvC4TzMvlbF9yZ01stB6tT0cRxg0zT5t76" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-submit {
+            background-color: #6f3bb8;
+            color: white;
+        }
+        .btn-submit:hover {
+            background-color: #013e7e;
+        }
+    </style>
 </head>
 <body>
-    <h1>Upload Plant Image for Disease Detection</h1>
-    <form action="/predict" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" required>
-        <button type="submit">Predict</button>
-    </form>
+    <div class="container">
+        <div class="header">
+            <h1 class="display-4">Plant Disease Detection</h1>
+            <p class="lead">Upload an image of your plant to detect if it's healthy or diseased.</p>
+        </div>
+
+        <div class="form-container">
+            <form action="/predict" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="file" class="form-label">Choose an image file</label>
+                    <input type="file" name="file" id="file" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-submit w-100">Predict</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybN6zU1KOw2t6oT4USZtKpR5jlJ6I8iT5UBzYgmI32gITvH5J" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0H1Ly5tF3+c2F0+4L5E4b6/U4WRBjpBRrjG8FYWSjxT0p3db" crossorigin="anonymous"></script>
 </body>
 </html>
