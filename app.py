@@ -9,7 +9,7 @@ import os
 app = Flask(__name__)
 
 # Load the pre-trained model (make sure the path is correct)
-model = load_model('model/plant_disease_binary_model.keras')
+model = load_model('plant_disease_triclass_model.keras')
 
 # Preprocessing function
 def preprocess_image(img_file):
@@ -39,15 +39,19 @@ def predict():
         # Preprocess the image
         img_array = preprocess_image(file)
 
-        # Make prediction
+        # Modify the prediction to handle 3 outcomes
         prediction = model.predict(img_array)
-        result = "Healthy" if prediction[0][0] > 0.5 else "Diseased"
+        class_idx = np.argmax(prediction, axis=1)  # Get the class with the highest probability
+
+        # Map the index to the actual class
+        class_labels = ['Diseased', 'Healthy', 'Not a Leaf']
+        result = class_labels[class_idx[0]]
 
         return render_template('result.html', prediction=result)
 
     except Exception as e:
         return f"Error processing image: {str(e)}", 500
 
+# Run the app
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
-
